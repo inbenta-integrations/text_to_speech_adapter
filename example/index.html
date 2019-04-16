@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Inbenta text-to-speech chatbot demo</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <!-- Import Inbenta Chatbot SDK (check last available version/integrity from https://developers.inbenta.io/chatbot/javascript-sdk/sdk-subresource-integrity) -->
+    <script type="text/javascript" src="https://sdk.inbenta.io/chatbot/SDK_VERSION/inbenta-chatbot-sdk.js" integrity="SDK_VERSION_INTEGRITY" crossorigin="anonymous"></script>
+    
+    <!-- Import the text-to-speech chatbot adapter -->
+    <script src="../src/text-to-speech-adapter.js"></script>
+  </head>
+  <body class="inb-demo">
+    <header class="inb-demo__header">
+      <div class="inb-demo__header__title">
+        <a href="https://www.inbenta.com" target="_blank"><img class="inb-demo__header__image" src="https://www.inbenta.com/wp-content/themes/inbenta/img/logo-inbenta.svg" alt="Inbenta"></a>
+      </div>
+    </header>
+    <main class="inb-demo__main">
+      <div class="inb-demo__main__content">
+        <h1 class="inb-demo__title">Chatbot text-to-speech demo</h1>
+        <!-- INBENTA CHATBOT SDK -->
+        <script type="text/javascript">
+          let inbApp = {
+            // Inbenta Chatbot SDK credentials
+            sdkAuth: {
+              inbentaKey: '<YOUR_API_KEY>',
+              domainKey: '<YOUR_DOMAIN_KEY>'
+            },
+            // Inbenta Chatbot SDK configuration
+            sdkConfig: {
+              chatbotId: 'text_to_speech_chatbot',
+              labels: {
+                en: {
+                  'interface-title': 'Text to Speech Demo'
+                }
+              },
+              showLoader: true,
+              adapters: []
+            },
+            // Text to speech adapter configuration
+            appConfig: {
+              textToSpeechAdapter: {
+                voice: 'UK English Female',   // Available voices in https://responsivevoice.org/text-to-speech-languages/        
+                readSideWindowContent: true,  // Read the chatbot sideWindow content too
+                useMessagesQueue: false       // Use a message queue or stop playing on every new message
+              }
+            }
+          };
+
+          // Add the text-to-speech adapter to the chatbot
+          inbApp.sdkConfig.adapters.push(textToSpeechAdapter(inbApp.appConfig.textToSpeechAdapter));
+
+          // Build Inbenta Chatbot SDK
+          window.InbentaChatbotSDK.buildWithDomainCredentials(inbApp.sdkAuth, inbApp.sdkConfig);
+        </script>
+      </div>
+    </main>
+  </body>
+</html>
