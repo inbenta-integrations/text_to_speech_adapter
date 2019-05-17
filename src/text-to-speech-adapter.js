@@ -16,7 +16,7 @@ function textToSpeechAdapter(conf) {
     let speaking = false;
 
     // Import ResponsiveVoice library
-    importScript({ src: 'https://code.responsivevoice.org/responsivevoice.js' });
+    importScript({ src: 'https://code.responsivevoice.org/1.5.14/responsivevoice.js' });
 
     // Play every displayed message
     chatbot.subscriptions.onDisplayChatbotMessage(function(messageData, next) {

@@ -27,9 +27,9 @@ This would be a valid configuration object:
 ```
 ## Integration example
 In the following example we're creating a chatbot with the text-to-speech adapter:
-* Import the Inbenta Chatbot SDK (check the last available version [here](https://developers.inbenta.io/chatbot/javascript-sdk/sdk-subresource-integrity))
+* Import the Inbenta Chatbot SDK (works with SDK version 1.26.0, but you can try the last one listed [here](https://developers.inbenta.io/chatbot/javascript-sdk/sdk-subresource-integrity))
     ```html
-    <script src="https://sdk.inbenta.io/chatbot/SDK_VERSION/inbenta-chatbot-sdk.js"></script>
+    <script src="https://sdk.inbenta.io/chatbot/1.26.0/inbenta-chatbot-sdk.js"></script>
     ```
 * Import the text-to-speech adapter from `src/adapters/text-to-speech-adapter.js`
     ```html
@@ -81,8 +81,8 @@ Here is the full integration code:
     <title>Inbenta text-to-speech chatbot demo</title>
     <link rel="shortcut icon" href="#" />
     
-    <!-- Import the Inbenta Chatbot SDK (check the last available version [here](https://developers.inbenta.io/chatbot/javascript-sdk/sdk-subresource-integrity)) -->
-    <script src="https://sdk.inbenta.io/chatbot/SDK_VERSION/inbenta-chatbot-sdk.js"></script>
+    <!-- Import the Inbenta Chatbot SDK (works with SDK version 1.26.0, but you can try the last one listed at https://developers.inbenta.io/chatbot/javascript-sdk/sdk-subresource-integrity) -->
+    <script src="https://sdk.inbenta.io/chatbot/1.26.0/inbenta-chatbot-sdk.js"></script>
     
     <!-- Import the text-to-speech chatbot adapter -->
     <script src="./src/adapters/text-to-speech-adapter.js"></script>
