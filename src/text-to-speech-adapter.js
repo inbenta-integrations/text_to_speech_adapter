@@ -15,7 +15,6 @@ function textToSpeechAdapter(conf) {
     let ttsMessagesQueue = [];
     let speaking = false;
     let finished = true;
-    let playInterval;
 
     // Import ResponsiveVoice library
     importScript({ src: 'https://code.responsivevoice.org/1.5.14/responsivevoice.js' });
