@@ -14,6 +14,7 @@ function textToSpeechAdapter(conf) {
   return function(chatbot) {
     let ttsMessagesQueue = [];
     let speaking = false;
+    let finished = true;
 
     // Import ResponsiveVoice library
     importScript({ src: 'https://code.responsivevoice.org/1.5.14/responsivevoice.js' });
@@ -34,24 +35,34 @@ function textToSpeechAdapter(conf) {
     function addTextToQueue(text) {
       if (typeof text === 'string' && text !== '') {
         ttsMessagesQueue.push(text);
-        playMessagesQueue();
+
+        var t=setInterval(function(){
+          if(finished){
+              clearInterval(t);
+              playMessagesQueue();
+          }
+        },300);
       }
     }
 
     // Handle the messages queue
     function playMessagesQueue() {
-      if (window.responsiveVoice && !speaking) {
+      if (window.responsiveVoice && !speaking){
         speaking = conf.useMessagesQueue;
         let nextMessage = ttsMessagesQueue.shift();
-        playText(nextMessage);
+        if(nextMessage !== undefined){
+            playText(nextMessage);
+        }
       }
     }
 
     // Execute TTS library
     function playText(text) {
       let decodedText = decodeEntities(text);
+
+      finished = false
       window.responsiveVoice.speak(decodedText, conf.voice, {
-        onend: finishedPlayingMessage
+          onend: finishedPlayingMessage
       });
     }
 
@@ -67,8 +78,11 @@ function textToSpeechAdapter(conf) {
     // Callback to continue playing the messages queue
     function finishedPlayingMessage() {
       speaking = false;
+
       if (ttsMessagesQueue.length > 0) {
         playMessagesQueue();
+      }else{
+        finished = true;
       }
     }
   }
